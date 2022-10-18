@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  api:
+    depends_on:
+      - db
+    restart: always
+    build:
+      context: .
+      target: api
+    ports:
+      - "8080:3000"
+    environment:
+      - DB_URL=mongodb://db
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command:
+      yarn start:debug
+  db:
+    image: mongo:6.0.2
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: secretusername
+      MONGO_INITDB_ROOT_PASSWORD: secretpasword
+      MONGO_INITDB_DATABASE: bubble
+
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_backup:/data/db
+
+volumes:
+  mongo_backup:
