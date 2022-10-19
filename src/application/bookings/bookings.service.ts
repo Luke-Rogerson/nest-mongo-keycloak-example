@@ -11,8 +11,7 @@ export class BookingsService implements IBookings {
   async getBookings() {
     return await this.bookingsRepo.getAll();
   }
-  confirmBooking(id: number) {
-    console.log('id :', id);
-    return true;
+  async confirmBooking(id: number) {
+    await this.bookingsRepo.confirmBooking(id);
   }
 }

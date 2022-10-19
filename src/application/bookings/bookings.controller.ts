@@ -1,7 +1,9 @@
 import {
   BadRequestException,
+  NotFoundException,
   Controller,
   Get,
+  HttpCode,
   Param,
   Put,
 } from '@nestjs/common';
@@ -15,19 +17,23 @@ export class BookingsController {
   constructor(private readonly bookingsService: BookingsService) {}
 
   @Get()
-  getBookings(): Promise<Booking[]> {
+  async getBookings(): Promise<Booking[]> {
     return this.bookingsService.getBookings();
   }
 
+  @HttpCode(202)
   @Put(':id/confirm')
-  confirmBooking(@Param('id') id: string) {
-    // throw new NotFoundException();
+  async confirmBooking(@Param('id') id: string) {
     if (!isNumeric(id)) {
       throw new BadRequestException({
         statusCode: 400,
         message: 'ID must be a number',
       });
     }
-    return this.bookingsService.confirmBooking(Number(id));
+    try {
+      await this.bookingsService.confirmBooking(Number(id));
+    } catch (error) {
+      throw new NotFoundException();
+    }
   }
 }

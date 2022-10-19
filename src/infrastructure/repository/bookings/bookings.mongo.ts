@@ -16,4 +16,19 @@ export class BookingsDB implements IBooking {
     // don't include `_id` in response
     return await this.collection.find().project<Booking>({ _id: 0 }).toArray();
   }
+
+  async confirmBooking(id: number) {
+    const response = await this.collection.findOneAndUpdate(
+      { id },
+      { $set: { confirmed: true } },
+      { projection: { _id: 0 } },
+    );
+
+    console.log('response :', response);
+    if (!response.value) {
+      throw new Error('Booking not found');
+    }
+
+    return response.value as Booking;
+  }
 }
