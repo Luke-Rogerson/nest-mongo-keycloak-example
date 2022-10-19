@@ -15,7 +15,7 @@ export class BookingsController {
   constructor(private readonly bookingsService: BookingsService) {}
 
   @Get()
-  getBookings(): Booking[] {
+  getBookings(): Promise<Booking[]> {
     return this.bookingsService.getBookings();
   }
 

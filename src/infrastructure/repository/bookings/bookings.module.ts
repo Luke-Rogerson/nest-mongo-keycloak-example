@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { MongoClient } from 'mongodb';
 import { IBooking } from './bookings';
-import { BookingDB } from './bookings.mongo';
+import { BookingsDB } from './bookings.mongo';
 
 @Module({
   providers: [
     {
-      provide: 'BOOKINGS_DATABASE',
+      provide: 'BOOKINGS_REPO',
       useFactory: async (): Promise<IBooking> => {
         try {
           const client = await MongoClient.connect(
             process.env.DB_CONFIG as string,
           );
 
-          return new BookingDB(
+          return new BookingsDB(
             client,
             'bookings',
             process.env.DB_NAME as string,
@@ -24,6 +24,6 @@ import { BookingDB } from './bookings.mongo';
       },
     },
   ],
-  exports: ['BOOKINGS_DATABASE'],
+  exports: ['BOOKINGS_REPO'],
 })
-export class DatabaseModule {}
+export class BookingsDbModule {}

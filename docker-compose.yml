@@ -10,8 +10,8 @@ services:
     ports:
       - "8080:3000"
     environment:
-      - DB_CONFIG=mongodb://secretusername:secretpasword@localhost:27017?retryWrites=true&w=majority
-      - DB_NAME:bubble
+      - DB_CONFIG=mongodb://secretusername:secretpasword@db:27017?retryWrites=true&w=majority
+      - DB_NAME=bubble
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
