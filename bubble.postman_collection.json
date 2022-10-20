@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "6deb93fb-ba1e-4011-9119-6a850e9f1755",
+		"name": "bubble",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get bookings",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJrQWNxSW56TFpmejdPVGtlZmI2WGRfVzE2MlhwdWl1ekVQQmtkMGxqRGhnIn0.eyJleHAiOjE2NjYyNjQxNjcsImlhdCI6MTY2NjI2MDU2NywianRpIjoiNjE4OTMyNDYtYmIzMi00N2E3LWFiMWItZjY5ZDRkNWUwMTBlIiwiaXNzIjoiaHR0cDovL2F1dGg6ODAwMC9hdXRoL3JlYWxtcy9wYXJlbnQiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNzZhZmVhYzktYjg5OC00OWZiLTkxM2YtMWY4YWE5N2RkZDg5IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYnViYmxlLWNsaWVudCIsInNlc3Npb25fc3RhdGUiOiI0ODZjMjNmMC1kM2E3LTQ3YTMtODU3ZC00YTk3MjcyYmZiYTIiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9hdXRoOjgwMDAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJkZWZhdWx0LXJvbGVzLXBhcmVudCJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJidWJibGUgYnViYmxlIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYnViYmxlIiwiZ2l2ZW5fbmFtZSI6ImJ1YmJsZSIsImZhbWlseV9uYW1lIjoiYnViYmxlIn0.dLJjBZJ4hW2b7gLMJHUYEXWgsZWy9ipXR3P3vNqk4upiIZrUYdQQJQyyYyJzksDI_kIqt9rbRBWDNVjiODS5nelkDB74qqoWZK3SLwVKMDh_UdxSzMhNYZEoUy7ItqsbzSpUmMLiOg72A1Ro5x53xiQCwWmr6F9Lph6rlu4oY6jbUgGp6QOHZGgEG5eCOwtxc_OEjxkXHZjq_9uQ05IBxgAi725aWcJ6KZbHHgps-sdZWs_mrBAMKZLfKSsms_dxQjU3qGqCWjLETKFEym8CAwXBG8iVAcE_ZvrlHp_UXqg_tOP70ypWnqkGRBvWNp2N2Jf_1_JRNlKqfEkjQyhEmg",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "confirm booking",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/bookings/1/confirm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bookings",
+						"1",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "YOUR_CLIENT_ID",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "YOUR_CLIENT_SECRET",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "bubble",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "be-test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://auth:8000/auth/realms/YOUR_REALM/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"auth"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"realms",
+						"YOUR_REALM",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
