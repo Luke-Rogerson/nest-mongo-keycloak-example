@@ -7,12 +7,14 @@ import {
   Param,
   Put,
 } from '@nestjs/common';
+import { Resource } from 'nest-keycloak-connect';
 import { BookingsService } from './bookings.service';
 
 import { isNumeric } from '../../utils';
 import { Booking } from '../../domain/models';
 
 @Controller('bookings')
+@Resource('bookings')
 export class BookingsController {
   constructor(private readonly bookingsService: BookingsService) {}
 

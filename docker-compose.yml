@@ -12,6 +12,9 @@ services:
     environment:
       - DB_CONFIG=mongodb://secretusername:secretpasword@db:27017?retryWrites=true&w=majority
       - DB_NAME=bubble
+      - AUTH_SERVER_URL=http://auth:8000
+      - CLIENT_ID=bubble-client
+      - CLIENT_SECRET=42a49883-6046-4861-bee0-40049d56bbda
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -28,6 +31,13 @@ services:
       - 27017:27017
     volumes:
       - mongo_backup:/data/db
+  auth:
+    image: wizzn/keycloak:12
+    ports: 
+    - 8000:8080
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
 
 volumes:
   mongo_backup:
